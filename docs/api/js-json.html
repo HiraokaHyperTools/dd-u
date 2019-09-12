@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>js.php の返す JSON &#8212; デジタルドルフィンズ・ユニバース  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/solar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="書類登録 API" href="add-new-record.html" />
+    <link rel="prev" title="WCQ 検索式" href="wcq.html" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<link href="../_static/solarized-dark.css" rel="stylesheet">
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="add-new-record.html" title="書類登録 API"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="wcq.html" title="WCQ 検索式"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="wcq.html"
+                        title="前の章へ">WCQ 検索式</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="add-new-record.html"
+                        title="次の章へ">書類登録 API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/js-json.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="js-php-json">
+<span id="js-json"></span><h1>js.php の返す JSON<a class="headerlink" href="#js-php-json" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ルーチン</p></th>
+<th class="head"><div class="line-block">
+<div class="line">X-JSON:</div>
+<div class="line">ヘッダー付与の条件</div>
+</div>
+</th>
+<th class="head"><p>HTTP レスポンス ボディー</p></th>
+<th class="head"><p>HTTP_X_SET_BRACKETS = 0</p></th>
+<th class="head"><p>HTTP_X_SET_BRACKETS = 1</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>setJson</p></td>
+<td><p>5,000 バイト未満の場合</p></td>
+<td><p>JSON</p></td>
+<td><p>JSON</p></td>
+<td><p>JSON</p></td>
+</tr>
+<tr class="row-odd"><td><p>setJson2</p></td>
+<td><p>5,000 バイト未満の場合</p></td>
+<td><p>(JSON)</p></td>
+<td><p>JSON</p></td>
+<td><p>(JSON)</p></td>
+</tr>
+<tr class="row-even"><td><p>setJson2B</p></td>
+<td><p>付与しません</p></td>
+<td><p>(JSON)</p></td>
+<td><p>JSON</p></td>
+<td><p>(JSON)</p></td>
+</tr>
+<tr class="row-odd"><td><p>setJson2R</p></td>
+<td><p>付与しません</p></td>
+<td><p>JSON</p></td>
+<td><p>JSON</p></td>
+<td><p>(JSON)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="add-new-record.html" title="書類登録 API"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="wcq.html" title="WCQ 検索式"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, HIRAOKA HYPERS TOOLS, Inc..
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
+    </div>
+  </body>
+</html>

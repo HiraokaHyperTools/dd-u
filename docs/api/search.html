@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>検索 API &#8212; デジタルドルフィンズ・ユニバース  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/solar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="WCQ 検索式" href="wcq.html" />
+    <link rel="prev" title="Ando 能力" href="ando.html" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<link href="../_static/solarized-dark.css" rel="stylesheet">
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="wcq.html" title="WCQ 検索式"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="ando.html" title="Ando 能力"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">検索 API</a><ul>
+<li><a class="reference internal" href="#url">URL</a></li>
+<li><a class="reference internal" href="#http">HTTP リクエストヘッダー</a></li>
+<li><a class="reference internal" href="#id1">HTTP リクエストボディー</a></li>
+<li><a class="reference internal" href="#id2">HTTP レスポンスヘッダー</a></li>
+<li><a class="reference internal" href="#id3">HTTP レスポンスボディー</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="ando.html"
+                        title="前の章へ">Ando 能力</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="wcq.html"
+                        title="次の章へ">WCQ 検索式</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/search.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="api">
+<h1>検索 API<a class="headerlink" href="#api" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="url">
+<h2>URL<a class="headerlink" href="#url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>POST /DD/ando.php?a=search
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default" id="id4">
+<caption><span class="caption-text">QueryString</span><a class="headerlink" href="#id4" title="このテーブルへのパーマリンク">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>start</p></td>
+<td><p>スキップ件数。0 の場合、最初から表示</p></td>
+</tr>
+<tr class="row-odd"><td><p>q</p></td>
+<td><p>WCQ 検索式を BASE64 ('base64url' encoding) 化したもの</p></td>
+</tr>
+<tr class="row-even"><td><p>FindWay</p></td>
+<td><p>&quot;kw&quot;=キーワード検索, 他カスタム検索</p></td>
+</tr>
+<tr class="row-odd"><td><p>KeywordSearch-FTS</p></td>
+<td><p>1 の場合「全文検索を含む」オン</p></td>
+</tr>
+<tr class="row-even"><td><p>KeywordSearch</p></td>
+<td><p>キーワード検索のキーワード</p></td>
+</tr>
+<tr class="row-odd"><td><p>userid</p></td>
+<td><p>未登録呼び出し対象の担当者 ID</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default" id="id5">
+<caption><span class="caption-text">DB フィールドごとの QueryString</span><a class="headerlink" href="#id5" title="このテーブルへのパーマリンク">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Vid</p></td>
+<td><p>書類 ID を指定</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cid</p></td>
+<td><div class="line-block">
+<div class="line">書類 ID の検索方法。</div>
+<div class="line"><a class="reference internal" href="wcq.html#wcq-opecodes"><span class="std std-ref">オペコード</span></a> 参照。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Vid と Cid のほかに、このような組み合わせもあります。DateInput2 など、s,between が可能なフィールドは 3 列あります。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vid</span>    <span class="n">Cid</span>
+<span class="n">Vgroup_id</span>    <span class="n">Cgroup_id</span>
+<span class="n">Vcreateuserid</span>    <span class="n">Ccreateuserid</span>
+<span class="n">Vadminuserid</span>    <span class="n">Cadminuserid</span>
+<span class="n">DateInput</span>    <span class="n">DateInputCondition</span>    <span class="n">DateInput2</span>
+<span class="n">DateUpdate</span>    <span class="n">DateUpdateCondition</span>    <span class="n">DateUpdate2</span>
+<span class="n">DateDeadline</span>    <span class="n">DateDeadlineCondition</span>    <span class="n">DateDeadline2</span>
+<span class="n">DateUser</span>    <span class="n">DateUserCondition</span>    <span class="n">DateUser2</span>
+<span class="n">Vcampanyname</span>    <span class="n">Ccampanyname</span>
+<span class="n">Vtitle</span>    <span class="n">Ctitle</span>    <span class="n">Vtitle_2</span>
+<span class="n">Vproject</span>    <span class="n">Cproject</span>    <span class="n">Vproject_2</span>
+<span class="n">Vusercustomitem1</span>    <span class="n">Cusercustomitem1</span>    <span class="n">Vusercustomitem1_2</span>
+<span class="n">Vusercustomitem2</span>    <span class="n">Cusercustomitem2</span>    <span class="n">Vusercustomitem2_2</span>
+<span class="n">Vusercustomitem3</span>    <span class="n">Cusercustomitem3</span>    <span class="n">Vusercustomitem3_2</span>
+<span class="n">Vusercustomitem4</span>    <span class="n">Cusercustomitem4</span>    <span class="n">Vusercustomitem4_2</span>
+<span class="n">Vusercustomitem5</span>    <span class="n">Cusercustomitem5</span>    <span class="n">Vusercustomitem5_2</span>
+<span class="n">Vmemo</span>    <span class="n">Cmemo</span>
+</pre></div>
+</div>
+<p>Vexeword を指定した場合は拡張子を検索します。
+&quot;<em>.doc/</em>.docx&quot; のように複数の拡張子を検索することも可能。&quot;フォルダ&quot; の場合はフォルダを検索します。</p>
+<p>次の項目は bool です。&quot;1&quot; か &quot;0&quot; で検索。検索したくない場合は空文字列。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Vgroup_only</span>
+<span class="n">Vf_individual</span>
+<span class="n">Vf_secret</span>
+<span class="n">Vf_handin</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="http">
+<h2>HTTP リクエストヘッダー<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>特になし</p>
+</div>
+<div class="section" id="id1">
+<h2>HTTP リクエストボディー<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>特になし</p>
+</div>
+<div class="section" id="id2">
+<h2>HTTP レスポンスヘッダー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>特になし</p>
+</div>
+<div class="section" id="id3">
+<h2>HTTP レスポンスボディー<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>HTML で表示されます。</p>
+<p>API 用の場合、XXX に JSON を返します。<code class="docutils literal notranslate"><span class="pre">&lt;!--</span> <span class="pre">&lt;mydd:ando&gt;XXX&lt;/mydd:ando&gt;</span> <span class="pre">--&gt;</span></code></p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;f&quot;</span><span class="p">:</span><span class="s2">&quot;thumbnail&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;cntTotal&quot;</span><span class="p">:</span><span class="s2">&quot;総件数&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;cntRecords&quot;</span><span class="p">:</span><span class="s2">&quot;ヒット件数&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;start&quot;</span><span class="p">:</span><span class="s2">&quot;スキップ件数&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;needNext&quot;</span><span class="p">:</span><span class="s2">&quot;次へがある場合 1&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;cntPrev&quot;</span><span class="p">:</span><span class="s2">&quot;検索結果より前にある件数&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;cntNext&quot;</span><span class="p">:</span><span class="s2">&quot;検索結果より後にある件数&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;recs&quot;</span><span class="p">:[</span>
+      <span class="p">{</span>
+         <span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="s2">&quot;書類 ID&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;modifydate&quot;</span><span class="p">:</span><span class="s2">&quot;更新日&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;createdate&quot;</span><span class="p">:</span><span class="s2">&quot;作成日&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="s2">&quot;項目 1&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;campanyname&quot;</span><span class="p">:</span><span class="s2">&quot;会社名&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="s2">&quot;項目 2&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;usercustomitem1&quot;</span><span class="p">:</span><span class="s2">&quot;項目 3&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;usercustomitem2&quot;</span><span class="p">:</span><span class="s2">&quot;項目 4&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;usercustomitem3&quot;</span><span class="p">:</span><span class="s2">&quot;項目 5&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;usercustomitem4&quot;</span><span class="p">:</span><span class="s2">&quot;項目 6&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;usercustomitem5&quot;</span><span class="p">:</span><span class="s2">&quot;項目 7&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;memo&quot;</span><span class="p">:</span><span class="s2">&quot;コメント欄&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;exeword&quot;</span><span class="p">:</span><span class="s2">&quot;拡張子&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;fp&quot;</span><span class="p">:</span><span class="s2">&quot;書類ダウンロード用 URL の一部&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;tget_query&quot;</span><span class="p">:</span><span class="s2">&quot;サムネイル取得用 URL&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;IsDLAllowed&quot;</span><span class="p">:</span><span class="s2">&quot;ダウンロード許可の場合 1&quot;</span>
+      <span class="p">}</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="wcq.html" title="WCQ 検索式"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="ando.html" title="Ando 能力"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, HIRAOKA HYPERS TOOLS, Inc..
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>WCQ 検索式 &#8212; デジタルドルフィンズ・ユニバース  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/solar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="prev" title="検索 API" href="search.html" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<link href="../_static/solarized-dark.css" rel="stylesheet">
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="search.html" title="検索 API"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">WCQ 検索式</a><ul>
+<li><a class="reference internal" href="#id1">1 バイト目の構造</a></li>
+<li><a class="reference internal" href="#id2">文字列</a></li>
+<li><a class="reference internal" href="#wcq-opecodes">オペコード</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="search.html"
+                        title="前の章へ">検索 API</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/wcq.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="wcq">
+<h1>WCQ 検索式<a class="headerlink" href="#wcq" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>WCQ (Word Complex Query)</p>
+<p>逆ポーランド法で検索式を組み立てます。バイナリセーフ、バイトオーダーはリトルエンディアンです。</p>
+<p>引数は左からプッシュします。中置記法で <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;</span> <span class="pre">2</span></code> の場合、後置記法では <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">2</span> <span class="pre">&lt;</span></code></p>
+<div class="section" id="id1">
+<h2>1 バイト目の構造<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>0x00 - 0x7F = 引数(文字列、バイト数を示します)
+0x80 - 0xBF = 引数(DB フィールド)
+0xC0 - 0xFF = オペコード
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>文字列<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ボム無しの UTF-8 です。<code class="docutils literal notranslate"><span class="pre">(バイト数)</span> <span class="pre">+</span> <span class="pre">(文字列、NUL</span> <span class="pre">終端なし)</span></code></p>
+<table class="colwidths-auto docutils align-default" id="id4">
+<caption><span class="caption-text">DB フィールド（特記しないものは文字列）</span><a class="headerlink" href="#id4" title="このテーブルへのパーマリンク">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>DB 列番</p></th>
+<th class="head"><p>DB 列名</p></th>
+<th class="head"><p>名称</p></th>
+<th class="head"><p>型</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>id</p></td>
+<td><p>書類 ID</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>filepath</p></td>
+<td><p>書類ファイルの相対パス</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>title</p></td>
+<td><p>項目 1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>project</p></td>
+<td><p>項目 2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>campanyname</p></td>
+<td><p>会社名</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>memo</p></td>
+<td><p>コメント欄</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>f_secret</p></td>
+<td><p>マル秘 (bool)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>createuserid</p></td>
+<td><p>登録担当者 ID</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>14</p></td>
+<td><p>adminuserid</p></td>
+<td><p>承認担当者 ID</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>15</p></td>
+<td><p>createdate</p></td>
+<td><p>登録日 (date)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>16</p></td>
+<td><p>modifydate</p></td>
+<td><p>更新日 (date)</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>usercustomitem1</p></td>
+<td><p>項目 3</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>18</p></td>
+<td><p>usercustomitem2</p></td>
+<td><p>項目 4</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>19</p></td>
+<td><p>usercustomitem3</p></td>
+<td><p>項目 5</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>20</p></td>
+<td><p>usercustomitem4</p></td>
+<td><p>項目 6</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>21</p></td>
+<td><p>usercustomitem5</p></td>
+<td><p>項目 7</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p>linkname1</p></td>
+<td><p>リンク名称 1</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p>linkname2</p></td>
+<td><p>リンク名称 2</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>linkname3</p></td>
+<td><p>リンク名称 3</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p>linkname4</p></td>
+<td><p>リンク名称 4</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p>linkname5</p></td>
+<td><p>リンク名称 5</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>29</p></td>
+<td><p>linkpath1</p></td>
+<td><p>リンクパス 1</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>30</p></td>
+<td><p>linkpath2</p></td>
+<td><p>リンクパス 2</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>linkpath3</p></td>
+<td><p>リンクパス 3</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>linkpath4</p></td>
+<td><p>リンクパス 4</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>33</p></td>
+<td><p>linkpath5</p></td>
+<td><p>リンクパス 5</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>35</p></td>
+<td><p>modifytime</p></td>
+<td><p>更新時間</p></td>
+<td><p>time without time zone</p></td>
+</tr>
+<tr class="row-odd"><td><p>43</p></td>
+<td><p>limitdate</p></td>
+<td><p>提出期限</p></td>
+<td><p>date</p></td>
+</tr>
+<tr class="row-even"><td><p>44</p></td>
+<td><p>f_handin</p></td>
+<td><p>提出済み</p></td>
+<td><p>boolean</p></td>
+</tr>
+<tr class="row-odd"><td><p>45</p></td>
+<td><p>f_individual</p></td>
+<td><p>個人書類</p></td>
+<td><p>boolean</p></td>
+</tr>
+<tr class="row-even"><td><p>47</p></td>
+<td><p>userdate</p></td>
+<td><p>日付</p></td>
+<td><p>date</p></td>
+</tr>
+<tr class="row-odd"><td><p>50</p></td>
+<td><p>group_id</p></td>
+<td><p>グループ ID (int)</p></td>
+<td><p>integer</p></td>
+</tr>
+<tr class="row-even"><td><p>51</p></td>
+<td><p>group_only</p></td>
+<td><p>グループ専属書類 (bool)</p></td>
+<td><p>boolean</p></td>
+</tr>
+<tr class="row-odd"><td><p>52</p></td>
+<td><p>exeword</p></td>
+<td><p>拡張子</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>53</p></td>
+<td><p>lock</p></td>
+<td><p>読み取り専用</p></td>
+<td><p>boolean</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="wcq-opecodes">
+<span id="id3"></span><h2>オペコード<a class="headerlink" href="#wcq-opecodes" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>コード</p></th>
+<th class="head"><p>名前</p></th>
+<th class="head"><p>意味</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0xC0</p></td>
+<td><p>And</p></td>
+<td><p>引数 1 and 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xC1</p></td>
+<td><p>Or</p></td>
+<td><p>引数 1 or 2</p></td>
+</tr>
+<tr class="row-even"><td><p>0xC2</p></td>
+<td><p>s,contain</p></td>
+<td><p>引数 1 が引数 2 ～を含む検索</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xC3</p></td>
+<td><p>s,startswith</p></td>
+<td><p>～で始まる</p></td>
+</tr>
+<tr class="row-even"><td><p>0xC4</p></td>
+<td><p>s,endswith</p></td>
+<td><p>～で終わる</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xC5</p></td>
+<td><p>s,is</p></td>
+<td><p>完全一致</p></td>
+</tr>
+<tr class="row-even"><td><p>0xC6</p></td>
+<td><p>d,is</p></td>
+<td><p>等しい(日付)</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xC7</p></td>
+<td><p>d,between</p></td>
+<td><p>～と～の間(日付) 1 between 2 and 3</p></td>
+</tr>
+<tr class="row-even"><td><p>0xC8</p></td>
+<td><p>d,less</p></td>
+<td><p>より前 1&lt;2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xC9</p></td>
+<td><p>d,greater</p></td>
+<td><p>より後 1&gt;2</p></td>
+</tr>
+<tr class="row-even"><td><p>0xCA</p></td>
+<td><p>d,isnot</p></td>
+<td><p>等しくない 1!=2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xCB</p></td>
+<td><p>TRUE</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>0xCC</p></td>
+<td><p>FALSE</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>0xCD</p></td>
+<td><p>s,kw</p></td>
+<td><p>引数 1 でキーワード検索</p></td>
+</tr>
+<tr class="row-even"><td><p>0xCE</p></td>
+<td><p>s,geq</p></td>
+<td><p>～以上(文字列) 1&gt;=2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xCF</p></td>
+<td><p>s,leq</p></td>
+<td><p>～以下(文字列) 1&lt;=2</p></td>
+</tr>
+<tr class="row-even"><td><p>0xD0</p></td>
+<td><p>s,isnot</p></td>
+<td><p>～以外(文字列) 1!=2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xD1</p></td>
+<td><p>s,isempty</p></td>
+<td><p>引数 1 が空文字列</p></td>
+</tr>
+<tr class="row-even"><td><p>0xD2</p></td>
+<td><p>s,notcontained</p></td>
+<td><p>引数 1 が 2 を含まない</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xD3</p></td>
+<td><p>d,geq</p></td>
+<td><p>～以降(日付) 1&gt;=2</p></td>
+</tr>
+<tr class="row-even"><td><p>0xD4</p></td>
+<td><p>d,leq</p></td>
+<td><p>～以前(日付) 1&lt;=2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xD5</p></td>
+<td><p>i,is</p></td>
+<td><p>等しい(int) 1=2</p></td>
+</tr>
+<tr class="row-even"><td><p>0xD6</p></td>
+<td><p>i,isnot</p></td>
+<td><p>等しくない(int) 1!=2</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xD7</p></td>
+<td><p>b,is</p></td>
+<td><p>引数 1 が true</p></td>
+</tr>
+<tr class="row-even"><td><p>0xD8</p></td>
+<td><p>b,isnot</p></td>
+<td><p>引数 1 がfalse</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xD9</p></td>
+<td><p>s,fts1</p></td>
+<td><p>引数 1 で全文検索</p></td>
+</tr>
+<tr class="row-even"><td><p>0xDA</p></td>
+<td><p>f,between</p></td>
+<td><p>strtod 相当 1 between 2 and 3</p></td>
+</tr>
+<tr class="row-odd"><td><p>0xDB</p></td>
+<td></td>
+<td><div class="line-block">
+<div class="line">LongStr です。(バイト数 DWORD) + (文字列、NUL 終端なし)</div>
+<div class="line">r3296 以降で対応。</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>0xDC</p></td>
+<td><p>s,imagesearch</p></td>
+<td><div class="line-block">
+<div class="line">JSON 文字列で 引数 1 を指定し、画像検索します。</div>
+<div class="line">{</div>
+<div class="line-block">
+<div class="line">&quot;a&quot;:[&quot;aHashAsString&quot;,&quot;more&quot;,...],</div>
+<div class="line">&quot;dv&quot;:[&quot;dvHashAsString&quot;,&quot;more&quot;,...]</div>
+</div>
+<div class="line">}</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>0xDD</p></td>
+<td><p>s,equals</p></td>
+<td><div class="line-block">
+<div class="line">一致。 s,startswith と s,endswith を組み合わせたもの</div>
+<div class="line">r3566 以降で対応。</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="search.html" title="検索 API"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, HIRAOKA HYPERS TOOLS, Inc..
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
+    </div>
+  </body>
+</html>

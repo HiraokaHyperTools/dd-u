@@ -1,0 +1,58 @@
+拡張機能 (4.3.21 以降)
+=========================
+
+r3431 と、4.3.21 で、「拡張機能」を実装しました。
+
+グループマスタ、詳細画面にて：
+
+.. code-block:: JSON
+
+   {"selector":{"url":"http://192.168.2.111"}}
+
+本「拡張機能」は、将来的に他システムとの連携を実現するために用意しているものです。JSON 形式で指定します。
+
+現在は selector 仕様にのみ対応しています。
+
+selector とは、大まかには「定型パターンを外部システムに検索させる機能」です。
+
+.. image:: ./selector.png
+
+たとえば、整番を与えたら、それに付随する情報（図番・寸法・材質など）を CSV から検索して入力させる、という使い方ができます。
+
+selector の指定例です：
+
+.. code-block:: JSON
+
+   {
+      "selector": {
+         "url": "http://.../?q={f_}"
+      }
+   }
+
+``{f_}`` の部分が検索対象（例：整番）で置き換えられて、GET リクエストが発行されます。
+
+次のようなクラス構造の JSON 配列を受け付けます。
+
+.. code-block:: csharp
+
+        public class Teikei {
+            public String title { get; set; }
+            public String project { get; set; }
+            public String campanyname { get; set; }
+            public String usercustomitem1 { get; set; }
+            public String usercustomitem2 { get; set; }
+            public String usercustomitem3 { get; set; }
+            public String usercustomitem4 { get; set; }
+            public String usercustomitem5 { get; set; }
+            public String comment { get; set; }
+            public String name { get; set; }
+            public int group_id { get; set; }
+            public String userdate { get; set; }
+            public String limitdate { get; set; }
+            public String body { get; set; }
+        }
+
+一覧の表示：
+
+* body が定義されている場合は、HTML として項目を表示、
+* それ以外は name をテキスト表示します。

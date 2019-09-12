@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>ダウンロード fget &#8212; デジタルドルフィンズ・ユニバース  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/solar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="prev" title="サムネイル tget" href="tget.html" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<link href="../_static/solarized-dark.css" rel="stylesheet">
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="tget.html" title="サムネイル tget"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ダウンロード fget</a><ul>
+<li><a class="reference internal" href="#url">URL</a></li>
+<li><a class="reference internal" href="#http">HTTP リクエストヘッダー</a></li>
+<li><a class="reference internal" href="#id1">HTTP レスポンスコード</a></li>
+<li><a class="reference internal" href="#id2">HTTP レスポンスボディー</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="tget.html"
+                        title="前の章へ">サムネイル tget</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/fget.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="fget">
+<h1>ダウンロード fget<a class="headerlink" href="#fget" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="url">
+<h2>URL<a class="headerlink" href="#url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET /DD/fget.php?pid={pid}&amp;dummy={dummy}&amp;path=/{session_id}/{id}{ext}{fp}
+</pre></div>
+</div>
+<table class="colwidths-auto docutils align-default" id="id3">
+<caption><span class="caption-text">QueryString</span><a class="headerlink" href="#id3" title="このテーブルへのパーマリンク">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>session_id</p></td>
+<td><p>php のセッション ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>pid</p></td>
+<td><p>版管理している書類を対象とする場合は親の書類 ID</p></td>
+</tr>
+<tr class="row-even"><td><p>dummy</p></td>
+<td><p>ブラウザキャッシュ対策用</p></td>
+</tr>
+<tr class="row-odd"><td><p>id</p></td>
+<td><p>書類 ID</p></td>
+</tr>
+<tr class="row-even"><td><p>ext</p></td>
+<td><p>拡張子。必要な場合、付与しても構いません。その場合、動作には影響しません</p></td>
+</tr>
+<tr class="row-odd"><td><p>fp</p></td>
+<td><p>フォルダー書類の場合は、ファイルへの相対パス</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="http">
+<h2>HTTP リクエストヘッダー<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">HTTP_RANGE</span></code> 次のような書式に対応：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0-499
+-500
+9500-
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>HTTP レスポンスコード<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>成功の場合は 200 系</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 206 Partial Content
+HTTP/1.1 416 Requested range not satisfiable
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>HTTP レスポンスボディー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>通常は書類ファイルそのまま出力しますが、状況により異なったファイル形式で出力しようとします。</p>
+<ul class="simple">
+<li><p>$_GET[&quot;tiff2pdf&quot;] が 1 で、TIFF 書類の場合、PDF 形式に変換を試みます。</p></li>
+<li><p>UA がスマホまたは Mac OS X の場合、PDF 形式に変換を試みます。</p></li>
+<li><p>動画の場合、変換中は HTML を出力する場合があります。</p></li>
+<li><p>PDF 形式で、印刷が許可されていない閲覧者が入手しようとしている時、PDF に印刷不可のセキュリティーをセットしようとします。</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="tget.html" title="サムネイル tget"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, HIRAOKA HYPERS TOOLS, Inc..
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>ファイル差し替え &#8212; デジタルドルフィンズ・ユニバース  ドキュメント</title>
+    <link rel="stylesheet" href="../_static/solar.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="サムネイル tget" href="tget.html" />
+    <link rel="prev" title="書類登録 API" href="add-new-record.html" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
+<link href="../_static/solarized-dark.css" rel="stylesheet">
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="tget.html" title="サムネイル tget"
+             accesskey="N">次へ</a> |</li>
+        <li class="right" >
+          <a href="add-new-record.html" title="書類登録 API"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">API</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">目次</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ファイル差し替え</a><ul>
+<li><a class="reference internal" href="#url">URL</a></li>
+<li><a class="reference internal" href="#query-string">Query string</a></li>
+<li><a class="reference internal" href="#http">HTTP リクエストヘッダー</a></li>
+<li><a class="reference internal" href="#id2">HTTP リクエストボディー</a></li>
+<li><a class="reference internal" href="#id3">HTTP レスポンスコード</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="add-new-record.html"
+                        title="前の章へ">書類登録 API</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="tget.html"
+                        title="次の章へ">サムネイル tget</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/api/replace-file.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1>ファイル差し替え<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="url">
+<h2>URL<a class="headerlink" href="#url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>POST /DD/js.php?a=rf2&amp;id={id}&amp;alwaysrename={alwaysrename}
+</pre></div>
+</div>
+</div>
+<div class="section" id="query-string">
+<h2>Query string<a class="headerlink" href="#query-string" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>id</p></td>
+<td><p>書類 ID</p></td>
+</tr>
+<tr class="row-odd"><td><p>alwaysrename</p></td>
+<td><p>1 ならば強制差し替え (r3489 以降)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="http">
+<h2>HTTP リクエストヘッダー<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>X-FILE-NAME</p></td>
+<td><p>ファイル名。拡張子が重要です</p></td>
+</tr>
+<tr class="row-odd"><td><p>X-FILE-SIZE</p></td>
+<td><p>ファイルのバイト数</p></td>
+</tr>
+</tbody>
+</table>
+<p>(2016/10/3 修正) アンダーバーではなく、ハイフンで送ってください!</p>
+</div>
+<div class="section" id="id2">
+<h2>HTTP リクエストボディー<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>ファイルの中身</p>
+</div>
+<div class="section" id="id3">
+<h2>HTTP レスポンスコード<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>成功した場合は 200</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>HTTP/1.1 500 Upload error
+HTTP/1.1 500 Replace failed
+HTTP/1.1 500 NotImpl
+HTTP/1.1 500 AccessDenied
+HTTP/1.1 500 ReplaceShareViolation
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="tget.html" title="サムネイル tget"
+             >次へ</a> |</li>
+        <li class="right" >
+          <a href="add-new-record.html" title="書類登録 API"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">デジタルドルフィンズ・ユニバース  ドキュメント</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >API</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, HIRAOKA HYPERS TOOLS, Inc..
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.1.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
+    </div>
+  </body>
+</html>
