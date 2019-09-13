@@ -14,6 +14,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
+    <link rel="next" title="js.php の返す JSON" href="js-json.html" />
     <link rel="prev" title="検索 API" href="search.html" /><link href='http://fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans:300italic,400italic,700italic,400,300,700' rel='stylesheet' type='text/css'>
 <link href="../_static/solarized-dark.css" rel="stylesheet">
   </head><body>
@@ -23,6 +24,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="総合索引"
              accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="js-json.html" title="js.php の返す JSON"
+             accesskey="N">次へ</a> |</li>
         <li class="right" >
           <a href="search.html" title="検索 API"
              accesskey="P">前へ</a> |</li>
@@ -45,6 +49,9 @@
   <h4>前のトピックへ</h4>
   <p class="topless"><a href="search.html"
                         title="前の章へ">検索 API</a></p>
+  <h4>次のトピックへ</h4>
+  <p class="topless"><a href="js-json.html"
+                        title="次の章へ">js.php の返す JSON</a></p>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
     <ul class="this-page-menu">
@@ -281,116 +288,172 @@
 <tr class="row-odd"><th class="head"><p>コード</p></th>
 <th class="head"><p>名前</p></th>
 <th class="head"><p>意味</p></th>
+<th class="head"><p>分類</p></th>
+<th class="head"><p>numArgs</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>0xC0</p></td>
 <td><p>And</p></td>
 <td><p>引数 1 and 2</p></td>
+<td><p>BinaryOpBool</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xC1</p></td>
 <td><p>Or</p></td>
 <td><p>引数 1 or 2</p></td>
+<td><p>BinaryOpBool</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xC2</p></td>
 <td><p>s,contain</p></td>
 <td><p>引数 1 が引数 2 ～を含む検索</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xC3</p></td>
 <td><p>s,startswith</p></td>
 <td><p>～で始まる</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xC4</p></td>
 <td><p>s,endswith</p></td>
 <td><p>～で終わる</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xC5</p></td>
 <td><p>s,is</p></td>
 <td><p>完全一致</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xC6</p></td>
 <td><p>d,is</p></td>
 <td><p>等しい(日付)</p></td>
+<td><p>BinaryOpDate</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xC7</p></td>
 <td><p>d,between</p></td>
 <td><p>～と～の間(日付) 1 between 2 and 3</p></td>
+<td><p>TernaryOpDate</p></td>
+<td><p>3</p></td>
 </tr>
 <tr class="row-even"><td><p>0xC8</p></td>
 <td><p>d,less</p></td>
 <td><p>より前 1&lt;2</p></td>
+<td><p>BinaryOpDate</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xC9</p></td>
 <td><p>d,greater</p></td>
 <td><p>より後 1&gt;2</p></td>
+<td><p>BinaryOpDate</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xCA</p></td>
 <td><p>d,isnot</p></td>
 <td><p>等しくない 1!=2</p></td>
+<td><p>BinaryOpDate</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xCB</p></td>
 <td><p>TRUE</p></td>
+<td></td>
+<td><p>Literal</p></td>
 <td></td>
 </tr>
 <tr class="row-even"><td><p>0xCC</p></td>
 <td><p>FALSE</p></td>
 <td></td>
+<td><p>Literal</p></td>
+<td></td>
 </tr>
 <tr class="row-odd"><td><p>0xCD</p></td>
 <td><p>s,kw</p></td>
 <td><p>引数 1 でキーワード検索</p></td>
+<td><p>UnaryOpStr</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>0xCE</p></td>
 <td><p>s,geq</p></td>
 <td><p>～以上(文字列) 1&gt;=2</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xCF</p></td>
 <td><p>s,leq</p></td>
 <td><p>～以下(文字列) 1&lt;=2</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xD0</p></td>
 <td><p>s,isnot</p></td>
 <td><p>～以外(文字列) 1!=2</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xD1</p></td>
 <td><p>s,isempty</p></td>
 <td><p>引数 1 が空文字列</p></td>
+<td><p>UnaryOpStr</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>0xD2</p></td>
 <td><p>s,notcontained</p></td>
 <td><p>引数 1 が 2 を含まない</p></td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xD3</p></td>
 <td><p>d,geq</p></td>
 <td><p>～以降(日付) 1&gt;=2</p></td>
+<td><p>BinaryOpDate</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xD4</p></td>
 <td><p>d,leq</p></td>
 <td><p>～以前(日付) 1&lt;=2</p></td>
+<td><p>BinaryOpDate</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xD5</p></td>
 <td><p>i,is</p></td>
 <td><p>等しい(int) 1=2</p></td>
+<td><p>BinaryOpInt</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-even"><td><p>0xD6</p></td>
 <td><p>i,isnot</p></td>
 <td><p>等しくない(int) 1!=2</p></td>
+<td><p>BinaryOpInt</p></td>
+<td><p>2</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xD7</p></td>
 <td><p>b,is</p></td>
 <td><p>引数 1 が true</p></td>
+<td><p>UnaryOpBool</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>0xD8</p></td>
 <td><p>b,isnot</p></td>
 <td><p>引数 1 がfalse</p></td>
+<td><p>UnaryOpBool</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xD9</p></td>
 <td><p>s,fts1</p></td>
 <td><p>引数 1 で全文検索</p></td>
+<td><p>UnaryOpStr</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-even"><td><p>0xDA</p></td>
 <td><p>f,between</p></td>
 <td><p>strtod 相当 1 between 2 and 3</p></td>
+<td><p>TernaryOpFloat</p></td>
+<td><p>3</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xDB</p></td>
 <td></td>
@@ -399,6 +462,8 @@
 <div class="line">r3296 以降で対応。</div>
 </div>
 </td>
+<td><p>LongStr</p></td>
+<td></td>
 </tr>
 <tr class="row-even"><td><p>0xDC</p></td>
 <td><p>s,imagesearch</p></td>
@@ -412,14 +477,19 @@
 <div class="line">}</div>
 </div>
 </td>
+<td><p>UnaryOpStr</p></td>
+<td><p>1</p></td>
 </tr>
 <tr class="row-odd"><td><p>0xDD</p></td>
 <td><p>s,equals</p></td>
 <td><div class="line-block">
-<div class="line">一致。 s,startswith と s,endswith を組み合わせたもの</div>
+<div class="line">一致。</div>
+<div class="line">s,startswith と s,endswith を組み合わせたもの</div>
 <div class="line">r3566 以降で対応。</div>
 </div>
 </td>
+<td><p>BinaryOpStr</p></td>
+<td><p>2</p></td>
 </tr>
 </tbody>
 </table>
@@ -438,6 +508,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="../genindex.html" title="総合索引"
              >索引</a></li>
+        <li class="right" >
+          <a href="js-json.html" title="js.php の返す JSON"
+             >次へ</a> |</li>
         <li class="right" >
           <a href="search.html" title="検索 API"
              >前へ</a> |</li>

@@ -74,91 +74,149 @@ WCQ (Word Complex Query)
    * - コード
      - 名前
      - 意味
+     - 分類
+     - numArgs
    * - 0xC0
      - And
      - 引数 1 and 2
+     - BinaryOpBool
+     - 2
    * - 0xC1
      - Or
      - 引数 1 or 2
+     - BinaryOpBool
+     - 2
    * - 0xC2
      - s,contain
      - 引数 1 が引数 2 ～を含む検索
+     - BinaryOpStr
+     - 2
    * - 0xC3
      - s,startswith
      - ～で始まる
+     - BinaryOpStr
+     - 2
    * - 0xC4
      - s,endswith
      - ～で終わる
+     - BinaryOpStr
+     - 2
    * - 0xC5
      - s,is
      - 完全一致
+     - BinaryOpStr
+     - 2
    * - 0xC6
      - d,is
      - 等しい(日付)
+     - BinaryOpDate
+     - 2
    * - 0xC7
      - d,between
      - ～と～の間(日付) 1 between 2 and 3
+     - TernaryOpDate
+     - 3
    * - 0xC8
      - d,less
      - より前 1<2
+     - BinaryOpDate
+     - 2
    * - 0xC9
      - d,greater
      - より後 1>2
+     - BinaryOpDate
+     - 2
    * - 0xCA
      - d,isnot
      - 等しくない 1!=2
+     - BinaryOpDate
+     - 2
    * - 0xCB
      - TRUE
+     -
+     - Literal
      -
    * - 0xCC
      - FALSE
      -
+     - Literal
+     -
    * - 0xCD
      - s,kw
      - 引数 1 でキーワード検索
+     - UnaryOpStr
+     - 1
    * - 0xCE
      - s,geq
      - ～以上(文字列) 1>=2
+     - BinaryOpStr
+     - 2
    * - 0xCF
      - s,leq
      - ～以下(文字列) 1<=2
+     - BinaryOpStr
+     - 2
    * - 0xD0
      - s,isnot
      - ～以外(文字列) 1!=2
+     - BinaryOpStr
+     - 2
    * - 0xD1
      - s,isempty
      - 引数 1 が空文字列
+     - UnaryOpStr
+     - 1
    * - 0xD2
      - s,notcontained
      - 引数 1 が 2 を含まない
+     - BinaryOpStr
+     - 2
    * - 0xD3
      - d,geq
      - ～以降(日付) 1>=2
+     - BinaryOpDate
+     - 2
    * - 0xD4
      - d,leq
      - ～以前(日付) 1<=2
+     - BinaryOpDate
+     - 2
    * - 0xD5
      - i,is
      - 等しい(int) 1=2
+     - BinaryOpInt
+     - 2
    * - 0xD6
      - i,isnot
      - 等しくない(int) 1!=2
+     - BinaryOpInt
+     - 2
    * - 0xD7
      - b,is
      - 引数 1 が true
+     - UnaryOpBool
+     - 1
    * - 0xD8
      - b,isnot
      - 引数 1 がfalse
+     - UnaryOpBool
+     - 1
    * - 0xD9
      - s,fts1
      - 引数 1 で全文検索
+     - UnaryOpStr
+     - 1
    * - 0xDA
      - f,between
      - strtod 相当 1 between 2 and 3
+     - TernaryOpFloat
+     - 3
    * - 0xDB
      -
      - | LongStr です。(バイト数 DWORD) + (文字列、NUL 終端なし)
        | r3296 以降で対応。
+     - LongStr
+     -
    * - 0xDC
      - s,imagesearch
      - | JSON 文字列で 引数 1 を指定し、画像検索します。
@@ -166,7 +224,12 @@ WCQ (Word Complex Query)
        |  "a":["aHashAsString","more",...],
        |  "dv":["dvHashAsString","more",...]
        | }
+     - UnaryOpStr
+     - 1
    * - 0xDD
      - s,equals
-     - | 一致。 s,startswith と s,endswith を組み合わせたもの
+     - | 一致。 
+       | s,startswith と s,endswith を組み合わせたもの
        | r3566 以降で対応。
+     - BinaryOpStr
+     - 2
