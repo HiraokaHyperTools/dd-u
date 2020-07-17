@@ -301,8 +301,10 @@ AND の中で OR を使用する
 
    true
    false
-   || condition3
-   || condition4
+   condition3
+   ||
+   condition4
+   ||
    &&
    condition2
    &&
