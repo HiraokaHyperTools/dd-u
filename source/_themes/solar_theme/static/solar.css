@@ -83,7 +83,6 @@ div.sphinxsidebarwrapper {
 }
 
 div.sphinxsidebar {
-    margin: 0;
     padding: 0.5em 15px 15px 0;
     width: 210px;
     float: right;
@@ -336,4 +335,9 @@ div.viewcode-block:target {
     background-color: #f4debf;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
+}
+
+div.documentwrapper {
+    float: left;
+    width: 100%;
 }
