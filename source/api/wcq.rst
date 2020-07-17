@@ -233,3 +233,76 @@ WCQ (Word Complex Query)
        | r3566 以降で対応。
      - BinaryOpStr
      - 2
+
+AND と OR の使い方
+------------------------
+
+AND の中置記法
+
+.. code-block:: text
+
+   true
+   && condition1
+   && condition2
+
+AND の後置記法
+
+.. code-block:: text
+
+   true
+   condition1
+   &&
+   condition2
+   &&
+
+OR の中置記法
+
+.. code-block:: text
+
+   false
+   || condition3
+   || condition4
+
+OR の後置記法
+
+.. code-block:: text
+
+   false
+   condition3
+   ||
+   condition4
+   ||
+
+AND の中で OR を使用する
+----------------------------------
+
+中置記法
+
+.. code-block:: text
+
+   true
+   && (false
+      || condition3
+      || condition4
+   )
+   && condition2
+
+``condition1`` を ``(false || condition3 || condition4)`` で置き換えました。
+
+中置記法では、カッコ ``( )`` を使用する場合があります。
+
+これは「式」を「式ツリー」に変換する際に、「演算子の優先順位」を考慮する必要があるためです。
+
+後置記法 または 前置記法 では、直接「式ツリー」を記述する記法であるため、カッコ ``( )`` は使いません。
+
+後置記法
+
+.. code-block:: text
+
+   true
+   false
+   || condition3
+   || condition4
+   &&
+   condition2
+   &&
