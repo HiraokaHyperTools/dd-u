@@ -233,6 +233,24 @@ WCQ (Word Complex Query)
        | r3566 以降で対応。
      - BinaryOpStr
      - 2
+   * - 0xDE
+     - lnot
+     - | 論理的 not
+       | r4243 以降で対応。
+     - UnaryOpStr
+     - 1
+   * - 0xDF
+     - f,geq
+     - | 以上の数値
+       | v4.3-18-g795f4a9 以降で対応。
+     - BinaryOpStr
+     - 2
+   * - 0xE0
+     - f,leq
+     - | 以下の数値
+       | v4.3-18-g795f4a9 以降で対応。
+     - BinaryOpStr
+     - 2
 
 AND と OR の使い方
 ------------------------
