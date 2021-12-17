@@ -1,0 +1,1061 @@
+swagger: "2.0"
+info:
+  description: "デジタルドルフィンズ API"
+  version: "0.1.0"
+  title: "デジタルドルフィンズ API"
+  contact:
+    name: kenjiuno
+    email: "ku@digitaldolphins.jp"
+host: "DDS"
+basePath: "/DD"
+tags:
+- name: "認証"
+- name: "定型パターン"
+- name: "検索"
+schemes:
+- "http"
+- "https"
+paths:
+  "/api/ando/ando":
+    get:
+      tags:
+      - "認証"
+      summary: "能力を取得します"
+      operationId: getAndo
+      produces:
+      - "text/html"
+      - "application/json"
+      responses:
+        200:
+          description: "能力"
+          schema:
+            $ref: "#/definitions/AndoResponse"
+  "/api/ando/login":
+    post:
+      tags:
+      - "認証"
+      summary: "ログインします"
+      operationId: login
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "text/html"
+      - "application/json"
+      parameters:
+      - name: "ID"
+        in: "formData"
+        description: "ログイン ID"
+        required: true
+        type: "string"
+      - name: "Password"
+        in: "formData"
+        description: "パスワード"
+        required: false
+        type: "string"
+      - name: "APIOnly"
+        in: "formData"
+        description: "API 専用フラグ"
+        required: false
+        type: "string"
+        enum:
+        - 0
+        - 1
+      - name: "APIApp"
+        in: "formData"
+        description: "アプリ名称"
+        required: false
+        type: "string"
+      - name: "syskey"
+        in: "formData"
+        description: "シングルサインイン認証を使用する場合は、そのキー"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "ログイン成功"
+          schema:
+            $ref: "#/definitions/LoginResponse"
+        500:
+          description: "ログイン失敗"
+          schema:
+            $ref: "#/definitions/LoginErrorResponse"
+  "/api/ando/search":
+    get:
+      tags:
+      - "検索"
+      summary: "書類を検索します"
+      operationId: searchDocs
+      produces:
+      - "text/html"
+      - "application/json"
+      parameters:
+      - name: "FindWay"
+        in: "query"
+        description: >
+          検索方法:
+            * `kw` - キーワードのみ検索
+            * `c2` - 新しいカスタム検索
+            * `c` - 古いカスタム検索
+        required: true
+        type: "string"
+        enum:
+        - "kw"
+        - "c2"
+      - name: "KeywordSearch"
+        in: "query"
+        description: "キーワード"
+        type: "string"
+        required: true
+      - name: idl
+        in: query
+        description: 複数 ID の OR 検索
+        type: string
+      - name: id
+        in: query
+        description: ID 検索
+        type: string
+      - name: id_cond
+        in: query
+        description: ID 検索方法
+        type: string
+        enum:
+        - s,contain
+        - s,geq
+        - s,leq
+        - s,is
+      - name: group_id
+        in: query
+        description: グループ ID 検索
+        type: integer
+      - name: group_id_cond
+        in: query
+        description: グループ ID 検索方法
+        type: string
+        enum:
+        - i,is
+        - i,isnot
+      - name: group_only
+        in: query
+        description: グループ専属書類
+        type: string
+        enum:
+        - 0
+        - 1
+      - name: createuserid
+        in: query
+        description: 登録者
+        type: string
+      - name: createuserid_cond
+        in: query
+        description: 登録者 検索方法
+        type: string
+        enum:
+        - s,is
+        - s,isnot
+      - name: f_individual
+        in: query
+        description: 個人書類
+        type: string
+        enum:
+        - 1
+        - 0
+      - name: adminuserid
+        in: query
+        description: 承認者
+        type: string
+      - name: adminuserid_cond
+        in: query
+        description: 承認者 検索方法
+        type: string
+        enum:
+        - s,is
+        - s,isnot
+      - name: f_secret
+        in: query
+        description: 丸秘
+        type: string
+        enum:
+        - 1
+        - 0
+      - name: createdate
+        in: query
+        description: 登録日
+        type: string
+      - name: createdate_cond
+        in: query
+        description: 登録日 検索方法
+        type: string
+        enum:
+        - d,is
+        - d,between
+        - d,leq
+        - d,geq
+        - d,isnot
+      - name: createdate_2
+        in: query
+        description: 登録日 ～まで
+        type: string
+      - name: limitdate
+        in: query
+        description: 提出期限
+        type: string
+      - name: limitdate_cond
+        in: query
+        description: 提出期限 検索条件
+        type: string
+        enum:
+        - d,is
+        - d,between
+        - d,leq
+        - d,geq
+        - d,isnot
+      - name: limitdate_2
+        in: query
+        description: 提出期限 ～まで
+        type: string
+      - name: f_handin
+        in: query
+        description: 提出済み
+        type: string
+        enum:
+        - 1
+        - 0
+      - name: userdate
+        in: query
+        description: 日付
+        type: string
+      - name: userdate_cond
+        in: query
+        description: 日付 検索条件
+        type: string
+        enum:
+        - d,is
+        - d,between
+        - d,leq
+        - d,geq
+        - d,isnot
+      - name: userdate_2
+        in: query
+        description: 日付 ～まで
+        type: string
+      - name: campanyname
+        in: query
+        description: 会社名
+        type: string
+      - name: campanyname_cond
+        in: query
+        description: 会社名 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: campanyname_2
+        in: query
+        description: 会社名 ～まで
+        type: string
+      - name: title
+        in: query
+        description: 項目 1
+        type: string
+      - name: title_cond
+        in: query
+        description: 項目 1 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: title_2
+        in: query
+        description: 項目 1 ～まで
+        type: string
+      - name: project
+        in: query
+        description: 項目 2
+        type: string
+      - name: project_cond
+        in: query
+        description: 項目 2 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: project_2
+        in: query
+        description: 項目 2 ～まで
+        type: string
+      - name: usercustomitem1
+        in: query
+        description: 項目 3
+        type: string
+      - name: usercustomitem1_cond
+        in: query
+        description: 項目 3 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: usercustomitem1_2
+        in: query
+        description: 項目 3 ～まで
+        type: string
+      - name: usercustomitem2
+        in: query
+        description: 項目 4
+        type: string
+      - name: usercustomitem2_cond
+        in: query
+        description: 項目 4 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: usercustomitem2_2
+        in: query
+        description: 項目 4 ～まで
+        type: string
+      - name: usercustomitem3
+        in: query
+        description: 項目 5
+        type: string
+      - name: usercustomitem3_cond
+        in: query
+        description: 項目 5 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: usercustomitem3_2
+        in: query
+        description: 項目 5 ～まで
+        type: string
+      - name: usercustomitem4
+        in: query
+        description: 項目 6
+        type: string
+      - name: usercustomitem4_cond
+        in: query
+        description: 項目 6 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: usercustomitem4_2
+        in: query
+        description: 項目 6 ～まで
+        type: string
+      - name: usercustomitem5
+        in: query
+        description: 項目 7
+        type: string
+      - name: usercustomitem5_cond
+        in: query
+        description: 項目 7 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: usercustomitem5_2
+        in: query
+        description: 項目 7 ～まで
+        type: string
+      - name: linkpath1
+        in: query
+        description: リンクパス 1
+        type: string
+      - name: linkpath1_cond
+        in: query
+        description: リンクパス 1 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkpath1_2
+        in: query
+        description: リンクパス 1 ～まで
+        type: string
+      - name: linkpath2
+        in: query
+        description: リンクパス 2
+        type: string
+      - name: linkpath2_cond
+        in: query
+        description: リンクパス 2 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkpath2_2
+        in: query
+        description: リンクパス 2 ～まで
+        type: string
+      - name: linkpath3
+        in: query
+        description: リンクパス 3
+        type: string
+      - name: linkpath3_cond
+        in: query
+        description: リンクパス 3 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkpath3_2
+        in: query
+        description: リンクパス 3 ～まで
+        type: string
+      - name: linkpath4
+        in: query
+        description: リンクパス 4
+        type: string
+      - name: linkpath4_cond
+        in: query
+        description: リンクパス 4 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkpath4_2
+        in: query
+        description: リンクパス 4 ～まで
+        type: string
+      - name: linkpath5
+        in: query
+        description: リンクパス 5
+        type: string
+      - name: linkpath5_cond
+        in: query
+        description: リンクパス 5 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkpath5_2
+        in: query
+        description: リンクパス 5 ～まで
+        type: string
+      - name: linkname1
+        in: query
+        description: リンク名称 1
+        type: string
+      - name: linkname1_cond
+        in: query
+        description: リンク名称 1 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkname1_2
+        in: query
+        description: リンク名称 1 ～まで
+        type: string
+      - name: linkname2
+        in: query
+        description: リンク名称 2
+        type: string
+      - name: linkname2_cond
+        in: query
+        description: リンク名称 2 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkname2_2
+        in: query
+        description: リンク名称 2 ～まで
+        type: string
+      - name: linkname3
+        in: query
+        description: リンク名称 3
+        type: string
+      - name: linkname3_cond
+        in: query
+        description: リンク名称 3 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkname3_2
+        in: query
+        description: リンク名称 3 ～まで
+        type: string
+      - name: linkname4
+        in: query
+        description: リンク名称 4
+        type: string
+      - name: linkname4_cond
+        in: query
+        description: リンク名称 4 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkname4_2
+        in: query
+        description: リンク名称 4 ～まで
+        type: string
+      - name: linkname5
+        in: query
+        description: リンク名称 5
+        type: string
+      - name: linkname5_cond
+        in: query
+        description: リンク名称 5 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: linkname5_2
+        in: query
+        description: リンク名称 5 ～まで
+        type: string
+      - name: memo
+        in: query
+        description: コメント
+        type: string
+      - name: memo_cond
+        in: query
+        description: コメント 検索条件
+        type: string
+        enum:
+        - s,contain
+        - s,notcontained
+        - s,startswith
+        - s,endswith
+        - s,isempty
+        - s,isnotempty
+        - s,is
+        - f,between
+        - s,between
+        - s,leq
+        - s,geq
+        - s,isnot
+      - name: memo_2
+        in: query
+        description: コメント ～まで
+        type: string
+      - name: exeword
+        in: query
+        description: タイプ
+        type: string
+
+      security:
+      - phpSessId: []
+      responses:
+        200:
+          description: "検索成功"
+          schema:
+            $ref: "#/definitions/SearchResponse"
+  "/api/teikei/list":
+    get:
+      tags:
+      - "定型パターン"
+      summary: "定型パターンの一覧を取得します"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/TeikeiListResponse"
+      security:
+      - phpSessId: []
+securityDefinitions:
+  phpSessId:
+    type: "apiKey"
+    in: "header"
+    name: "X-PHPSESSID"
+
+definitions:
+  SearchResponse:
+    type: object
+    properties:
+      f:
+        type: string
+        title: form
+        example: thumbnail
+      cntTotal:
+        type: integer
+        title: ヒット件数
+        example: 270
+      cntRecords:
+        type: integer
+        title: 返された書類レコード件数
+        example: 270
+      start:
+        type: integer
+        title: 検索結果の開始位置 0 から
+        example: 0
+      needNext:
+        type: boolean
+        title: 「次の N 件」が存在するか
+        example: true
+      cntPrev:
+        type: integer
+        title: 「前の N 件」の N
+        example: 0
+      cntNext:
+        type: integer
+        title: 「次の N 件」の N
+        example: 51
+      recs:
+        type: array
+        title: 書類レコード一覧
+        items:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              title: 書類 ID
+              example: 00000290
+            modifydate:
+              type: string
+              title: 更新日時
+              example: 2019/05/22
+            createdate:
+              type: string
+              title: 登録日
+              example: 2019/05/17
+            title:
+              type: string
+              title: 項目 1
+              example: index.html.en
+            campanyname:
+              type: string
+              title: 会社名
+              example: ''
+            project:
+              type: string
+              title: 項目　2
+              example: ''
+            usercustomitem1:
+              type: string
+              title: 項目 3
+              example: ''
+            usercustomitem2:
+              type: string
+              title: 項目 4
+              example: ''
+            usercustomitem3:
+              type: string
+              title: 項目 5
+              example: ''
+            usercustomitem4:
+              type: string
+              title: 項目 6
+              example: ''
+            usercustomitem5:
+              type: string
+              title: 項目 7
+              example: e
+            linkpath1:
+              type: string
+              title: リンクパス 1
+              example: ''
+            linkpath2:
+              type: string
+              title: リンクパス 2
+              example: ''
+            linkpath3:
+              type: string
+              title: リンクパス 3
+              example: ''
+            linkpath4:
+              type: string
+              title: リンクパス 4
+              example: ''
+            linkpath5:
+              type: string
+              title: リンクパス 5
+              example: ''
+            linkname1:
+              type: string
+              title: リンク名称 1
+              example: ''
+            linkname2:
+              type: string
+              title: リンク名称 2
+              example: ''
+            linkname3:
+              type: string
+              title: リンク名称 3
+              example: ''
+            linkname4:
+              type: string
+              title: リンク名称 4
+              example: ''
+            linkname5:
+              type: string
+              title: リンク名称 5
+              example: ''
+            memo:
+              type: string
+              title: コメント
+              example: ''
+            exeword:
+              type: string
+              title: 拡張子
+              example: .en
+            fp:
+              type: string
+              title: ファイルパス
+              example: /7ini2djuvhn8sk7bmljq8hclk7/00000290.en
+            tget_query:
+              type: string
+              title: サムネイルを取得する相対 URL
+              example: tget.php?7ini2djuvhn8sk7bmljq8hclk7&id=00000290&w=1000
+            IsDLAllowed:
+              type: string
+              title: ダウンロードの許可
+              example: 0
+                - 1
+            createuserid:
+              type: string
+              title: 登録者 ID
+              example: '0'
+              pattern: ^(.*)$
+            adminuserid:
+              type: string
+              title: 承認者 ID
+              example: null
+            userdate:
+              type: string
+              title: ユーザー日付
+              example: 2019/05/17
+  AndoResponse:
+    type: object
+    properties:
+      feat:
+        type: object
+        description: |
+          * デジタルドルフィンズのバージョンアップにより、機能が増えていきます。
+          * `"mydd:ando":1` の場合は、`mydd:ando` を備えていることを意味します。
+          * `"mydd:ando":0` は使用しません。項目そのものが無くなります。
+        properties:
+          "mydd:ando":
+            type: string
+            description: |
+              常に 1
+              `mydd:ando` 能力を備えている
+          "0.1":
+            type: string
+            description: |
+              常に 1
+              `mydd:ando` の能力 v0.1 を備えている
+          "uname":
+            type: string
+            description: |
+              `f=search` の時に、`uname:"担当者名"` を追加します
+          "oc2":
+            type: string
+            description: |
+              おしらせ～る 2 に対応
+          "LongStr":
+            type: string
+            description: |
+              WCQ が LongStr に対応
+          "X-mrRes":
+            type: string
+            description: |
+              一部アクションの結果を HTTP レスポンスヘッダ X-mrRes に整数で設定します
+          "anr:fp":
+            type: string
+            description: |
+              `js.php?a=anr` で、`{"fp": "ファイルパス", "relfp": "相対ファイルパス"}` を追加で返します
+          "replace_js:newmt":
+            type: string
+            description: |
+              `core.php?a=replace_js` で、`$_REQUEST["newmt"]` が非 FALSE の場合、書類の更新日時を更新します。
+          "u:approver":
+            type: string
+            description: |
+              `js.php?a=lgu` で、`approver` を返します。
+          "s,equals":
+            type: string
+            description: |
+              WCQ 検索式で `s,equals` に対応。
+      PRO4_CORP_NAME:
+        type: string
+        description: |
+          ブランディング（社名）を設定している場合はその内容。それ以外は空文字列
+      PRO4_VER:
+        type: string
+        description: |
+          デジタルドルフィンズのバージョン
+  LoginResponse:
+    type: object
+    properties:
+      f:
+        type: string
+        example: "core_login"
+      PHPSESSID:
+        type: string
+  LoginErrorResponse:
+    type: object
+    properties:
+      f:
+        type: string
+        example: "error"
+      ERT:
+        type: string
+        enum:
+        - BADUP
+        - CONNERR
+        - NOPGERR
+        - FORMERR
+        - NOINST
+        - BADVER
+        - ADAUTHGUEST
+        - ADAUTHINACTIVE
+        - ADAUTH
+        - NOLOGIN
+  TeikeiListResponse:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          description: "内部の ID"
+        name:
+          type: string
+          description: "定型パターンの名称"
+        user_syscd:
+          type: string
+          description: "ユーザーの一意な ID"
+        pos:
+          type: number
+          description: "表示順"
+        campanyname:
+          type: string
+        usercustomitem1:
+          type: string
+        usercustomitem2:
+          type: string
+        usercustomitem3:
+          type: string
+        usercustomitem4:
+          type: string
+        usercustomitem5:
+          type: string
+        title:
+          type: string
+        project:
+          type: string
+        comment:
+          type: string
+        group_id:
+          type: integer
+          description: "この定型パターンが書類に設定するべきグループ ID"
+        belonging_group_id:
+          type: integer
+          description: "この定型パターンが所属しているグループの ID (共有の定型パターン)"
+        memo:
+          type: string
+        linkname1:
+          type: string
+        linkname2:
+          type: string
+        linkname3:
+          type: string
+        linkname4:
+          type: string
+        linkname5:
+          type: string
+        linkname6:
+          type: string
+          description: "未使用"
+        linkpath1:
+          type: string
+        linkpath2:
+          type: string
+        linkpath3:
+          type: string
+        linkpath4:
+          type: string
+        linkpath5:
+          type: string
+        linkpath6:
+          type: string
+          description: "未使用"

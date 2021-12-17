@@ -14,6 +14,13 @@
 
    api/index
 
+付録
+----
+
+デジタルドルフィンズ API (OpenAPI 2.x) 作成中
+
+* `See <_static/redoc-cli/index.html>`__ (redoc-cli version)
+* `See <_static/swagger-codegen/index.html>`__ (swagger-codegen version)
 
 Indices and tables
 ==================
