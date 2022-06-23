@@ -3,15 +3,15 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ListGroupUsers &#8212; デジタルドルフィンズ・ユニバース  ドキュメント</title>
-    <link rel="stylesheet" href="../_static/solar.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/solar.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
     <script src="../_static/translations.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="検索" href="../search.html" />
@@ -43,15 +43,15 @@
           <div class="body" role="main">
             
   <div class="section" id="listgroupusers">
-<h1>ListGroupUsers<a class="headerlink" href="#listgroupusers" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<h1>ListGroupUsers<a class="headerlink" href="#listgroupusers" title="Permalink to this heading">¶</a></h1>
 <div class="section" id="url">
-<h2>URL<a class="headerlink" href="#url" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>URL<a class="headerlink" href="#url" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GET /DD/js.php?a=lgu
 </pre></div>
 </div>
 </div>
 <div class="section" id="http">
-<h2>HTTP レスポンスボディー<a class="headerlink" href="#http" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<h2>HTTP レスポンスボディー<a class="headerlink" href="#http" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference internal" href="js-json.html#js-json"><span class="std std-ref">setJson2R</span></a></p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
    &quot;users&quot;: users,
@@ -61,7 +61,7 @@
 </pre></div>
 </div>
 <div class="section" id="users">
-<h3>users につきまして<a class="headerlink" href="#users" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>users につきまして<a class="headerlink" href="#users" title="Permalink to this heading">¶</a></h3>
 <p>担当者情報の配列です。担当者 1 名分の情報：</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
    &quot;id&quot;: ログイン ID,
@@ -78,16 +78,16 @@
 </div>
 </div>
 <div class="section" id="belonginggroupids">
-<h3>belongingGroupIds につきまして<a class="headerlink" href="#belonginggroupids" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>belongingGroupIds につきまして<a class="headerlink" href="#belonginggroupids" title="Permalink to this heading">¶</a></h3>
 <p>所属しているグループ ID の配列です。例: <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3]</span></code></p>
 </div>
 <div class="section" id="defaultgroupid">
-<h3>defaultGroupId につきまして<a class="headerlink" href="#defaultgroupid" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>defaultGroupId につきまして<a class="headerlink" href="#defaultgroupid" title="Permalink to this heading">¶</a></h3>
 <p>デフォルトグループの ID です。例: <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
 <p>未設定の場合は <code class="docutils literal notranslate"><span class="pre">-1</span></code></p>
 </div>
 <div class="section" id="groups">
-<h3>groups につきまして<a class="headerlink" href="#groups" title="このヘッドラインへのパーマリンク">¶</a></h3>
+<h3>groups につきまして<a class="headerlink" href="#groups" title="Permalink to this heading">¶</a></h3>
 <p>グループ情報の配列です。グループ 1 個分の情報</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>{
    &quot;id&quot;: グループ ID,
@@ -117,8 +117,9 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">目次</a></h3>
-  <ul>
+  <div>
+    <h3><a href="../index.html">目次</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">ListGroupUsers</a><ul>
 <li><a class="reference internal" href="#url">URL</a></li>
 <li><a class="reference internal" href="#http">HTTP レスポンスボディー</a><ul>
@@ -132,12 +133,17 @@
 </li>
 </ul>
 
-  <h4>前のトピックへ</h4>
-  <p class="topless"><a href="fget.html"
-                        title="前の章へ">ダウンロード fget</a></p>
-  <h4>次のトピックへ</h4>
-  <p class="topless"><a href="4321.html"
-                        title="次の章へ">拡張機能 (4.3.21 以降)</a></p>
+  </div>
+  <div>
+    <h4>前のトピックへ</h4>
+    <p class="topless"><a href="fget.html"
+                          title="前の章へ">ダウンロード fget</a></p>
+  </div>
+  <div>
+    <h4>次のトピックへ</h4>
+    <p class="topless"><a href="4321.html"
+                          title="次の章へ">拡張機能 (4.3.21 以降)</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>このページ</h3>
     <ul class="this-page-menu">
@@ -149,12 +155,12 @@
   <h3 id="searchlabel">クイック検索</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="検索" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -178,7 +184,7 @@
     </div>
     <div class="footer">
         &copy; Copyright 2019, HIRAOKA HYPERS TOOLS, Inc..
-    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.1.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 5.0.2.Theme is <a href="http://github.com/vimalkvn/solar-theme">Solar</a>
     </div>
   </body>
 </html>
